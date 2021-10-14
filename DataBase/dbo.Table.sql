@@ -1,0 +1,9 @@
+﻿CREATE TABLE [dbo].[Table]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [questName] NVARCHAR(50) NOT NULL, 
+    [v1] NVARCHAR(50) NOT NULL, 
+    [v2] NVARCHAR(50) NOT NULL, 
+    [v3] NVARCHAR(50) NOT NULL, 
+    [answ] NVARCHAR(50) NOT NULL
+)

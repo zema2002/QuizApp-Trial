@@ -1,0 +1,56 @@
+﻿@{
+   
+}
+
+<html>
+<head>
+    <style>
+        .propose {
+            text-align:center;
+            
+            font-size:20px;
+        }
+
+        .button {
+            text-align:center;
+            color:white;
+            margin-top:50px;
+            
+        }
+
+        .short_desc {
+            text-align:center;
+            color:#808080;
+            margin-top:50px;
+        }
+
+        .image {
+            text-align:center;
+            margin-top:50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="propose"><a>Do you want to begin the test?</a></div>
+    <div class="image">
+        <img src="~/img/logo.svg" height="150" width="150" />
+    </div>
+    <div class="button">
+        <a class="btn btn-primary" asp-controller="Home" asp-action="Testing">START</a>
+    </div>
+
+    <div class="short_desc">
+        <a>
+            The test, that we propose will check your level of knowing C# and .Net technology in general.
+        </a>
+        <br />
+        <a>
+            It will be 5 questions and they are separated on topics. The level of the test is C# Starter.
+        </a>
+        <br />
+        <a>
+            We wish you success!
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿
+<h2>Index</h2>
+
+
+<html>
+<head>
+    <script>
+        function func() {
+
+            alert('Нажата кнопка');
+            var checkedValue = null;
+            var inputElements = document.getElementsByClassName('messageCheckbox');
+            for (var i = 0; inputElements[i]; ++i) {
+                if (inputElements[i].checked) {
+                    checkedValue = inputElements[i].value;
+                    break;
+                }
+            }
+            alert(checkedValue);
+        } 
+        
+    </script>
+
+
+
+
+    <style>
+    </style>
+</head>
+<body>
+    <form>
+        <input class="messageCheckbox" type="checkbox" value="1" name="mail" />Check
+        <input class="messageCheckbox" type="checkbox" value="2" name="mail" />Check
+        <input class="messageCheckbox" type="checkbox" value="3" name="mail" />Check
+        <input class="messageCheckbox" type="checkbox" value="4" name="mail" />Check
+        <br />
+        <input type="button" id="but" value="Add" onclick="func()" />
+    </form>
+     
+         
+
+</body>
+</html>

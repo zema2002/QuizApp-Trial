@@ -1,0 +1,100 @@
+﻿
+
+@using PagerApp.Models
+@using WebApplication2.DataBase
+@model IndexViewModel
+
+
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+
+
+
+<style>
+    @@font-face {
+        font-family: 'FontAwesome';
+        src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/fonts/fontawesome-webfont.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal
+    }
+
+    .glyphicon {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale
+    }
+
+    .glyphicon-chevron-right:before {
+        content: "\f054";
+    }
+
+    .glyphicon-chevron-left:before {
+        content: "\f053";
+    }
+</style>
+<h1>List of questions</h1>
+<table class="table">
+
+    <tr><th>Question</th><th>Variant1</th><th>Variant2</th><th>Variant3</th><th>Variant4</th></tr>
+    <form method="post">
+        @foreach (Question u in Model.Questions)
+        {
+        <tr><td class="alert-primary">@u.Name_Quest</td><td>@u.Var_Answ1 <input class="messageCheckbox" type="checkbox" name="v1" value="v1"></td><td>@u.Var_Answ2 <input class="messageCheckbox" type="checkbox" name="v2" value="v2" /></td><td>@u.Var_Answ3  <input class="messageCheckbox" type="checkbox" name="v3" value="v3" /></td><td>@u.Answ <input class="messageCheckbox" type="checkbox" name="v4" value="v4" /></td></tr>
+    }
+    <button asp-controller="Home" asp-action="Fill">Add answer manually</button>
+    <div>
+        <input type="button" id="but" value="Get the checked element" onclick="func()" />
+    </div>
+    </form>
+    </table>
+
+    @if (Model.PageViewModel.HasPreviousPage)
+    {
+        <a asp-action="GetQuestions"
+           asp-route-page="@(Model.PageViewModel.PageNumber - 1)"
+           class="btn btn-outline-dark">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Назад
+        </a>
+    }
+    @if (Model.PageViewModel.HasNextPage)
+    {
+        <a asp-action="GetQuestions"
+           asp-route-page="@(Model.PageViewModel.PageNumber + 1)"
+           class="btn btn-outline-dark">
+            Вперед
+            <i class="glyphicon glyphicon-chevron-right"></i>
+        </a>
+    }
+
+
+    <script>
+        function func() {
+
+            alert('Нажата кнопка');
+            var checkedValue = null;
+            var inputElements = document.getElementsByClassName('messageCheckbox');
+            for (var i = 0; inputElements[i]; ++i) {
+                if (inputElements[i].checked) {
+                    checkedValue = inputElements[i].value;
+                    break;
+                }
+            }
+            alert(checkedValue);
+            
+            $.ajax({
+                type: "POST",
+                url: "/Home/GetQuestions",
+                data: { check:checkedValue },
+                datatype: "html",
+                success: function () {
+                    console.log('Success');
+                }
+            });
+        }
+    </script>

@@ -1,0 +1,93 @@
+﻿@model MyModel
+
+<html>
+<head>
+    <style>
+        .contain {
+            text-align:center;
+        }
+        .submition{
+            text-align:center;
+            margin-top:50px;
+        }
+        .title {
+            text-align:center;
+           font-size:30px;
+        }
+        .head {
+            text-align:center;
+            font-size:25px;
+        }
+        .agree{
+            max-width:200px;
+            max-height:100px;
+            
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size:20px;
+            border:solid 2px;
+            border-radius:10px;
+            margin-top:50px;
+            margin-left:460px;
+           
+        } 
+
+        .outside{
+            margin-top:50px;
+        }
+
+        .logo{
+            margin-top:50px;
+            text-align:center;
+        }
+
+        .desc {
+            color:#808080;
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+   <div class="head">
+       <a class="title" >Are you ready?</a>
+       <div class="logo">
+           <img src="~/img/livejournal.png" height="150" width="150" />
+       </div>
+   </div>
+   <div class="contain">
+       <form asp-antiforgery="true" >
+           @*@Html.CheckBoxFor(model=>model.IsChecked)*@
+           
+           <div class="agree">
+               <input type="checkbox" value="false" required />
+           <a>I agree to start</a></div>
+
+           <div class="desc">
+               <a>*Putting agreement you accept to take part in testing</a>
+           </div>
+               
+           <div class="outside"><button class="btn btn-primary" asp-controller="Home" asp-action="GetQuestions">Proceed</button></div>
+           <button class="btn btn-danger" asp-controller="Home" asp-action="Index1">GO</button>
+           
+       </form>
+       
+   
+           <div class="submition">
+               
+           </div>
+       
+           
+   </div>
+    <script>
+        
+        const inputs = document.querySelectorAll('input[type=checkbox]');
+        const button = document.querySelector('button');
+
+        function check() {
+            button.disabled = true;
+            inputs.forEach(input => { if (input.checked) button.disabled = false });
+        }
+        inputs.forEach(input => input.addEventListener('change', check));
+
+    </script>
+</body>
+</html>
